@@ -91,10 +91,10 @@
     @apply text-[20px] font-semibold leading-[24.8px];
   }
   .base-medium {
-    @apply text-[18px] font-medium leading-[25.2px];
+    @apply text-[18px] font-medium leading-[25px];
   }
   .base-semibold {
-    @apply text-[18px] font-semibold leading-[25.2px];
+    @apply text-[18px] font-semibold leading-[25px];
   }
   .base-bold {
     @apply text-[18px] font-bold leading-[140%];
@@ -132,8 +132,8 @@
   .subtle-regular {
     @apply text-[10px] font-normal leading-[13px];
   }
-  .placeholder {
-    @apply placeholder:text-light-400 dark:placeholder:text-light-;
+   .placeholder {
+    @apply placeholder:text-light-400 dark:placeholder:text-light-500;
   }
   .invert-colors {
     @apply invert dark:invert-0;

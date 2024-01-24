@@ -1,4 +1,4 @@
-import { ClerkProvider } from "@clerk/nextjs";
+// import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 import { Inter, Space_Grotesk } from "next/font/google";
 import type { Metadata } from "next";
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description:
     "A community-driven platform for asking and answering programing question. Get help, share knowledge, and collaborate with developers from arrond the world.",
   icons: {
-    icon: "./../public/assets/images/site-logo.svg",
+    icon: "/assets/images/site-logo.svg",
   },
 };
 
@@ -32,18 +32,18 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <ClerkProvider
+      {/* <ClerkProvider
         appearance={{
           elements: {
             formButtonPrimary: "primary-gradient",
             footerActionLink: "primary-text-gradient hover:text-primary-500",
           },
         }}
-      >
+      > */}
         <body className={`${SpaceGrotesk.variable} ${inter.variable}`}>
           <ThemeProvider>{children}</ThemeProvider>
         </body>
-      </ClerkProvider>
+      {/* </ClerkProvider> */}
     </html>
   );
 }
