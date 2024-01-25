@@ -12,7 +12,7 @@ import { Button } from "@/components/ui/button";
 const LeftSideBar = () => {
   const pathname = usePathname();
   return (
-    <section className=" pt-36 px-5 border-r border-slate-100 dark:border-none background-light900_dark200 sticky left-0 top-0 h-screen flex flex-col max-sm:hidden justify-between">
+    <section className=" pt-36 px-5 border-r light-border background-light900_dark200 sticky left-0 top-0 h-screen flex flex-col max-sm:hidden justify-between">
       <div className="lg:min-w-[14rem] flex flex-col gap-4 max-lg:items-center">
         {sidebarLinks.map((item) => {
           const isActive =
