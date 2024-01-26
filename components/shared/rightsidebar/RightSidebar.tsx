@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import RenderTag from "../RenderTag";
 
 const RightSidebar = () => {
   const topQuestion = [
@@ -29,11 +30,11 @@ const RightSidebar = () => {
   ];
 
   const popularTags = [
-    { _id: 0, name: "next js", totalQuestiions: 5 },
-    { _id: 1, name: "react", totalQuestiions: 5 },
-    { _id: 2, name: "css", totalQuestiions: 5 },
-    { _id: 3, name: "httml", totalQuestiions: 5 },
-    { _id: 4, name: "tailwind", totalQuestiions: 5 },
+    { _id: "0", name: "next js", totalQuestions: 5 },
+    { _id: "1", name: "react", totalQuestions: 5 },
+    { _id: "2", name: "css", totalQuestions: 5 },
+    { _id: "3", name: "httml", totalQuestions: 5 },
+    { _id: "4", name: "tailwind", totalQuestions: 5 },
   ];
 
   return (
@@ -64,20 +65,15 @@ const RightSidebar = () => {
       <div className="px-6 gap-7 flex flex-col ">
         <h2 className="h3-semibold text-dark300_light900">Popular Tags</h2>
         <div className="flex flex-col gap-2">
-          {popularTags.map((item) => {
+          {popularTags.map((tag) => {
             return (
-              <Link
-                href="#"
-                className="flex justify-between items-center subtle-regular  "
-                key={item._id}
-              >
-                <Button className=" text-light400_light500 btn-secondary uppercase scale-y-[.8] ">
-                  {item.name}{" "}
-                </Button>
-                <p className="text-dark400_light800 body-regular ">
-                  {item.totalQuestiions}{" "}
-                </p>
-              </Link>
+              <RenderTag
+              key={tag._id}
+              _id={tag._id}
+              name={tag.name}
+              totalQuestions={tag.totalQuestions}
+              showCount
+            />
             );
           })}
         </div>

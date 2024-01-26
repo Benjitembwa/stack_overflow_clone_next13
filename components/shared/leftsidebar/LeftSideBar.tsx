@@ -25,8 +25,8 @@ const LeftSideBar = () => {
                 className={`flex items-center gap-4 bg-transparent p-4 ${
                   isActive
                     ? "primary-gradient rounded-lg text-light-900 "
-                    : "text-dark300_light900"
-                } hover:scale-110 transition-all duration-200`}
+                    : "text-dark300_light900 hover:scale-110 transition-all duration-200"
+                } `}
               >
                 <Image
                   src={item.imgURL}
