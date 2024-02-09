@@ -20,6 +20,8 @@ import { Input } from "@/components/ui/input";
 import { QuestionSchema } from "@/lib/validations";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
+import { createCreation } from "@/lib/actions/question.action";
+
 
 const Question = () => {
   const type: any = "create";
@@ -38,11 +40,13 @@ const Question = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof QuestionSchema>) {
+  async function onSubmit(values: z.infer<typeof QuestionSchema>) {
     setIsSubmitting(true);
 
     try {
-      //make an async call to our Api
+
+      await createCreation({})
+
     } catch (error) {
     } finally {
       setIsSubmitting(false);
@@ -53,8 +57,6 @@ const Question = () => {
     e: React.KeyboardEvent<HTMLInputElement>,
     field: any
   ) => {
-    console.log(e);
-    console.log(field);
     if (e.key === "Enter" && field.name === "tags") {
       e.preventDefault();
       const tagInput = e.target as HTMLInputElement;
@@ -128,6 +130,8 @@ const Question = () => {
                     // @ts-ignore
                     (editorRef.current = editor)
                   }
+                  onBlur={field.onBlur}
+                  onEditorChange={(content) => field.onChange(content)}
                   initialValue=""
                   init={{
                     height: 350,
