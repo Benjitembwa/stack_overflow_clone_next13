@@ -5,37 +5,12 @@ import LocalSearchBar from "@/components/shared/LocalSearchBar";
 import NoResult from "@/components/shared/NoResult";
 import { Button } from "@/components/ui/button";
 import { HomePageFilters } from "@/constants/filters";
+import { getQuestions } from "@/lib/actions/question.action";
 import Link from "next/link";
 
-export default function Home() {
-  const questions = [
-  {
-    _id: "1",
-    title: "Cascading Deletes in SQLAlchemy?",
-    tags: [
-      { _id: "1", name: "python" },
-      { _id: "2", name: "sql" },
-    ],
-    author: { _id: "1", name: "John Doe", picture: "john.jpg" },
-    upvotes: 101506,
-    views: 1000007,
-    answers: [],
-    createdAt: new Date("2022-12-01T12:00:00.000Z"),
-  },
-  {
-    _id: "2",
-    title: "How to center a div?",
-    tags: [
-      { _id: "3", name: "html" },
-      { _id: "4", name: "css" },
-    ],
-    author: { _id: "2", name: "Jane Smith", picture: "jane.jpg" },
-    upvotes: 35001,
-    views: 150000002,
-    answers: [],
-    createdAt: new Date("2023-09-02T10:30:00.000Z"),
-  },
-];
+export default async function Home() {
+  const result = await getQuestions({});
+  console.log(result.questions[0].author);
   return (
     <>
       <div className="flex flex-col-reverse sm:flex-row justify-between sm:items-center w-full gap-4 ">
@@ -52,8 +27,8 @@ export default function Home() {
       </div>
       <HomeFilters />
       <div className="mt-10 flex w-full flex-col gap-6">
-        {questions.length > 0 ? (
-          questions.map((question) => (
+        {result.questions.length > 0 ? (
+          result.questions.map((question) => (
             <QuestionCard
               key={question._id}
               _id={question._id}
@@ -68,10 +43,10 @@ export default function Home() {
           ))
         ) : (
           <NoResult
-           title="There's no question to show"
-           description="Be the first to break the silence! 🚀 Ask a Question and kickstart the discussion. our query could be the next big thing others learn from. Get involved! 💡"
-           link="/ask-question"
-           linkTitle="Ask a Question"
+            title="There's no question to show"
+            description="Be the first to break the silence! 🚀 Ask a Question and kickstart the discussion. our query could be the next big thing others learn from. Get involved! 💡"
+            link="/ask-question"
+            linkTitle="Ask a Question"
           />
         )}
       </div>

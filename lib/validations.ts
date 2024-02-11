@@ -6,7 +6,7 @@ export const QuestionSchema = z.object({
   }).max(130, {
     message: "Title can't go above 130 characters"
   }),
-  explanation: z.string().min(100, {
+  explanation: z.string().min(0, {
     message: "Title must be at least 100 characters.",
   }),
   tags : z.array(z.string().min(1, {

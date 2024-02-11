@@ -21,14 +21,21 @@ import { QuestionSchema } from "@/lib/validations";
 import { Badge } from "../ui/badge";
 import Image from "next/image";
 import { createCreation } from "@/lib/actions/question.action";
+import { useRouter, usePathname } from "next/navigation";
 
+interface Props{
+  mongoUserId: string
+}
 
-const Question = () => {
+const Question = ({mongoUserId}: Props) => {
   const type: any = "create";
 
   const editorRef = useRef(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const router = useRouter();
+  const Pathname = usePathname();
 
   const form = useForm<z.infer<typeof QuestionSchema>>({
     resolver: zodResolver(QuestionSchema),
@@ -45,8 +52,15 @@ const Question = () => {
 
     try {
 
-      await createCreation({})
+      await createCreation({
+        title: values.title,
+        content: values.explanation,
+        tags: values.tags,
+        author: JSON.parse(mongoUserId),
+        path: Pathname,
+      })
 
+      router.push("/");
     } catch (error) {
     } finally {
       setIsSubmitting(false);
@@ -113,8 +127,30 @@ const Question = () => {
             </FormItem>
           )}
         />
-
         <FormField
+          control={form.control}
+          name="explanation"
+          render={({ field }) => (
+            <FormItem className="flex w-full flex-col">
+              <FormLabel className="paragraph-semibold text-dark400_light800">
+                Question Title <span className="text-primary-500">*</span>
+              </FormLabel>
+              <FormControl className="mt-3.5">
+                <Input
+                  className="no-focus paragraph-regular background-light900_dark300 light-border-2 text-dark300_light700 min-h-[56px] border "
+                  {...field}
+                />
+              </FormControl>
+              <FormDescription className="body-regular mt-2.5 text-light-500">
+                Be specific and imagine you&apos;re asking a question to another
+                person
+              </FormDescription>
+              <FormMessage className="text-red-500" />
+            </FormItem>
+          )}
+        />
+          
+        {/* <FormField
           control={form.control}
           name="explanation"
           render={({ field }) => (
@@ -169,7 +205,7 @@ const Question = () => {
               <FormMessage className="text-red-500" />
             </FormItem>
           )}
-        />
+        /> */}
 
         <FormField
           control={form.control}
