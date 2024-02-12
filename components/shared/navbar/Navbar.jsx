@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-// import { SignIn, UserButton } from '@clerk/nextjs';
+import { SignIn, UserButton } from '@clerk/nextjs';
 import Theme from './Theme';
 import MobileNav from './MobileNav';
 import GlobalSearch from '../search/GlobalSearch';
@@ -23,8 +23,7 @@ const Navbar = () => {
         <GlobalSearch/>
         <div className='flex-between gap-5'>
             <Theme/>
-            {/* UserButton */}
-            {/* <SignIn appearance={{
+            <SignIn appearance={{
                 elements:{
                  avatarBox: 'h-10 w-10'
                 },
@@ -33,7 +32,7 @@ const Navbar = () => {
                 }
             }}>
               <UserButton afterSignOutUrl="/"/>   
-            </SignIn> */}
+            </SignIn>
             <MobileNav/>
         </div>
     </div>

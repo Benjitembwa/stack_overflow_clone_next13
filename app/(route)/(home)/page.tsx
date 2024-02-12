@@ -10,7 +10,6 @@ import Link from "next/link";
 
 export default async function Home() {
   const result = await getQuestions({});
-  console.log(result.questions[0].author);
   return (
     <>
       <div className="flex flex-col-reverse sm:flex-row justify-between sm:items-center w-full gap-4 ">
