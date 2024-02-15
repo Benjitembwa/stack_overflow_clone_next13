@@ -1,5 +1,6 @@
 import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
+import "./../styles/prism.css"
 import { Inter, Space_Grotesk } from "next/font/google";
 import type { Metadata } from "next";
 import { ThemeProvider } from "@/context/ThemeProvider";
@@ -39,7 +40,7 @@ export default function RootLayout({
             footerActionLink: "primary-text-gradient hover:text-primary-500",
           },
         }}
-      > 
+      >
         <body className={`${SpaceGrotesk.variable} ${inter.variable}`}>
           <ThemeProvider>{children}</ThemeProvider>
         </body>

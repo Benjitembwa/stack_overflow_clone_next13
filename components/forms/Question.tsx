@@ -22,14 +22,15 @@ import { Badge } from "../ui/badge";
 import Image from "next/image";
 import { createCreation } from "@/lib/actions/question.action";
 import { useRouter, usePathname } from "next/navigation";
+import { useTheme } from "@/context/ThemeProvider";
 
-interface Props{
-  mongoUserId: string
+interface Props {
+  mongoUserId: string;
 }
 
-const Question = ({mongoUserId}: Props) => {
+const Question = ({ mongoUserId }: Props) => {
   const type: any = "create";
-
+  const { mode } = useTheme();
   const editorRef = useRef(null);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -51,14 +52,13 @@ const Question = ({mongoUserId}: Props) => {
     setIsSubmitting(true);
 
     try {
-
       await createCreation({
         title: values.title,
         content: values.explanation,
         tags: values.tags,
         author: JSON.parse(mongoUserId),
         path: Pathname,
-      })
+      });
 
       router.push("/");
     } catch (error) {
@@ -127,7 +127,7 @@ const Question = ({mongoUserId}: Props) => {
             </FormItem>
           )}
         />
-        <FormField
+        {/* <FormField
           control={form.control}
           name="explanation"
           render={({ field }) => (
@@ -148,9 +148,9 @@ const Question = ({mongoUserId}: Props) => {
               <FormMessage className="text-red-500" />
             </FormItem>
           )}
-        />
-          
-        {/* <FormField
+        /> */}
+
+        <FormField
           control={form.control}
           name="explanation"
           render={({ field }) => (
@@ -195,6 +195,8 @@ const Question = ({mongoUserId}: Props) => {
                       "alignright alignjustify | bullist numlist",
                     content_style:
                       "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+                    skin: mode === "dark" ? "oxide-dark" : "oxide",
+                    content_css: mode === "dark" ? "dark" : "light",
                   }}
                 />
               </FormControl>
@@ -205,7 +207,7 @@ const Question = ({mongoUserId}: Props) => {
               <FormMessage className="text-red-500" />
             </FormItem>
           )}
-        /> */}
+        />
 
         <FormField
           control={form.control}

@@ -12,7 +12,7 @@ const Page = async () => {
     <>
       <h1 className="h1-bold text-dark100_light900">All Users</h1>
       <div className="mt-11 flex max-lg:justify-between text-dark500_light700 justify-start max-lg:items-center max-sm:flex-col gap-5">
-        <LocalSearchBar placeholder="Search questiions..." />
+        <LocalSearchBar placeholder="Search for users" />
         <Filters filters={UserFilters} />
       </div>
       <section className="mt-11 flex flex-wrap gap-4">
