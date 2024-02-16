@@ -8,6 +8,8 @@ export default authMiddleware({
     "/tags",
     "/question/:id",
     "/collection",
+    "/tags/:id",
+    "/tags",
   ],
 });
 
