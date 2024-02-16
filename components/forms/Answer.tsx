@@ -87,7 +87,7 @@ const Answer = ({ question, questionId, authorId }: Props) => {
           className="mt-6 flex w-full flex-col gap-10"
           onSubmit={form.handleSubmit(handleCreateAnswer)}
         >
-          <FormField
+          {/* <FormField
             control={form.control}
             name="answer"
             render={({ field }) => (
@@ -108,8 +108,8 @@ const Answer = ({ question, questionId, authorId }: Props) => {
                 <FormMessage className="text-red-500" />
               </FormItem>
             )}
-          />
-          {/* <FormField
+          /> */}
+          <FormField
             control={form.control}
             name="answer"
             render={({ field }) => (
@@ -157,7 +157,7 @@ const Answer = ({ question, questionId, authorId }: Props) => {
                 <FormMessage className="text-red-500" />
               </FormItem>
             )}
-          /> */}
+          />
           <div className="flex justify-end">
             <Button
               type="submit"

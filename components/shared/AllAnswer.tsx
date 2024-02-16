@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getTimestamp } from "@/lib/utils";
 import ParseHTML from "./ParseHtml";
+import Votes from "./Votes";
 
 interface Props {
   questionId: string;
@@ -23,7 +24,6 @@ const AllAnswer = async ({
   filter,
 }: Props) => {
   const result = await getAnswers({ questionId });
-  console.log(result);
   return (
     <div className="mt-11">
       <div className="flex items-center justify-between">
@@ -53,11 +53,21 @@ const AllAnswer = async ({
                   <p className="small-regular text-light400_dark500 mt-0.5 line-clamp-1 ml-0.5">
                     {/*answered {getTimestamp(answer.createdAt)}*/}
                     {/* TODO: discover why getTimestamp gives us an error */}
-                    answered {answer.createdAt}
+                    answered
                   </p>
                 </div>
               </Link>
-              <div className="flex justify-end">VOTING</div>
+              <div className="flex justify-end">
+                <Votes
+                  type="Answer"
+                  itemId={JSON.stringify(answer._id)}
+                  userId={JSON.stringify(userId)}
+                  upvotes={answer.upvotes.length}
+                  downvotes={answer.downvotes.length}
+                  hasupVoted={answer.upvotes.includes(userId)}
+                  hasdownVoted={answer.downvotes.includes(userId)}
+                />
+              </div>
             </div>
             <ParseHTML data={answer.content} />
           </article>

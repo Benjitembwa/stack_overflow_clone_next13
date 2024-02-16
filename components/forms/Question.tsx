@@ -127,7 +127,7 @@ const Question = ({ mongoUserId }: Props) => {
             </FormItem>
           )}
         />
-        {/* <FormField
+        <FormField
           control={form.control}
           name="explanation"
           render={({ field }) => (
@@ -148,7 +148,7 @@ const Question = ({ mongoUserId }: Props) => {
               <FormMessage className="text-red-500" />
             </FormItem>
           )}
-        /> */}
+        />
 
         <FormField
           control={form.control}

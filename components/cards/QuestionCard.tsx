@@ -16,7 +16,7 @@ interface QuestionProps {
     name: string;
     picture: string;
   };
-  upvotes: number;
+  upvotes: string[];
   views: number;
   answers: Array<object>;
   createdAt: Date;
@@ -65,7 +65,7 @@ const QuestionCard = ({
         <Metric
           imgUrl="assets/icons/like.svg"
           alt="upvotes"
-          value={formatAndDivideNumber(upvotes)}
+          value={formatAndDivideNumber(upvotes.length)}
           title=" votes"
           textStyles="small-medium text-dark400_light800 "
         />
@@ -80,7 +80,7 @@ const QuestionCard = ({
           imgUrl="assets/icons/eye.svg"
           alt="eye"
           value={formatAndDivideNumber(views)}
-          title=" votes"
+          title=" views"
           textStyles="small-medium text-dark400_light800 "
         />
       </div>
